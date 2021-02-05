@@ -1,0 +1,14 @@
+<form (ngSubmit)="createStripeToken()">
+    <label>Please enter your payment details</label>
+  <div id="form-field">
+        <div id="card-info" #cardInfo></div>
+          <button class="pay-button" mat-raised-button id="submit-button" type="submit">
+            Pay ${{ totalCost | number : roundTo }}
+        </button>
+        <mat-error id="card-errors" role="alert" *ngIf="cardError">
+            <mat-icon style="color: #f44336">cancel</mat-icon>
+            &nbsp;{{ cardError }}
+        </mat-error>
+    </div>
+  </form>
+  

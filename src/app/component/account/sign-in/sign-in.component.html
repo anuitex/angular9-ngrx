@@ -1,0 +1,34 @@
+  <div class="signin-form">
+    <h2>Sing In</h2>
+    <form [formGroup]="signInForm" (submit)="signIn()">
+        <div class="form-group">
+            <input type="text" class="form-control" formControlName="email" placeholder="Your Email *"/>
+            <span class="error-block" *ngIf="!email.valid && (email.touched || formSubmited)">
+              <span *ngIf="email.hasError('required')">
+                Please provide email
+              </span>
+              <span *ngIf="email.hasError('email')">
+                Please provide email provider
+              </span>
+          </span>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" formControlName="password" placeholder="Your Password *"/>
+            <span class="error-block" *ngIf="!password.valid && (password.touched || formSubmited)">
+              <span *ngIf="password.hasError('required')">
+                Please provide password
+              </span>
+              <span *ngIf="password.errors.minlength">
+                Passsword should not be lesser then 8 charaster
+              </span>
+            </span>
+        </div>
+        <div class="form-group-button">
+            <input type="submit" [disabled]="signInForm.invalid" class="btn btn-primary btn-lg" value="Sing In" />
+        </div>
+        <div class="form-group">
+            <a [routerLink]="['/forgot-password']" class="link">Forgot Password?</a>
+        </div>
+    </form>
+    <div>Don't have an account? <a class="link" [routerLink]="['/sign-up']">Sign Up</a></div>
+</div>

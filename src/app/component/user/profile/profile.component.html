@@ -1,0 +1,45 @@
+<div class="container emp-profile">
+    <form method="post">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="profile-head">
+                    <h2>
+                        {{ (user$ | async )?.name }} {{ (user$ | async )?.surname }}
+                    </h2>
+                    <hr>
+                </div>
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label>User Id</label>
+                            </div>
+                            <div class="col-md-8">
+                                <p>{{ (user$ | async )?.id }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label>Email</label>
+                            </div>
+                            <div class="col-md-8">
+                                <p>{{ (user$ | async )?.email }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label>Username</label>
+                            </div>
+                            <div class="col-md-8">
+                                <p>{{ (user$ | async )?.username }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button mat-icon-button (click)="edit()"><mat-icon>edit</mat-icon></button>
+        </div>
+    </form>           
+</div>
+

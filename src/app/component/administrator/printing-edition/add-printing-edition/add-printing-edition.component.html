@@ -1,0 +1,93 @@
+<mat-toolbar>
+    <span>{{ "Add Printing Edition" }}</span>
+  </mat-toolbar>
+  <form [formGroup]="formService.printingEditionForm" (submit)="onSubmit()">
+    <mat-grid-list cols="2" rowHeight="300">
+      <mat-grid-tile>
+        <div class="controles-container">
+          <input type="hidden" formControlName="id">
+          <mat-form-field>
+            <mat-label>Title</mat-label>
+            <input formControlName="title" matInput placeholder="Title" maxlength="100">
+            <mat-error *ngIf="formService.title.invalid && formService.title.touched">
+              Book title is required
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Description</mat-label>
+            <textarea formControlName="description" matInput placeholder="Description" maxlength="10000" rows="9"></textarea>
+          </mat-form-field>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <div class="controles-container">
+          <mat-form-field>
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="type">
+              <ng-container>
+                <mat-option *ngFor="let selected of editionTypes" [value]="selected">
+                  {{ editionType[selected] }}
+                </mat-option>
+              </ng-container>
+            </mat-select>
+            <mat-error *ngIf="formService.type.invalid && formService.type.touched">
+              Please choose category for edition
+            </mat-error>
+          </mat-form-field>
+
+        <mat-form-field>
+              <mat-label>Authors</mat-label>
+              <mat-select (openedChange)="openedChange($event)" placeholder="Select" formControlName='authors' multiple>
+                <div class="select-container">
+                  <mat-optgroup >
+                    <mat-form-field style="width:100%;">
+                      <input #search autocomplete="off" placeholder="Search" aria-label="Search" matInput [formControl]="searchTextboxControl">
+
+                      <button [disableRipple]="true" *ngIf="search.value" matSuffix mat-icon-button aria-label="Clear" (click)="clearSearch($event)">
+                        <mat-icon >close</mat-icon>
+                      </button>
+
+                    </mat-form-field>
+                  </mat-optgroup>
+
+                  <mat-optgroup *ngIf="(filteredOptions | async).length < minLength">
+                    <div> No results found! </div>
+                  </mat-optgroup>
+
+                  <mat-option (onSelectionChange)="selectionChange($event)" *ngFor="let option of filteredOptions | async" [value]="option.id">
+                    {{ option.name }}
+                  </mat-option>
+                </div>
+              </mat-select>
+              <mat-error *ngIf="formService.authors.invalid && formService.authors.touched">
+                Edition without author(s) exist not possible
+              </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Price</mat-label>
+            <input formControlName="price" matInput type="number">
+            <mat-error *ngIf="formService.price.invalid && formService.price.touched">
+              Please enter price for edition
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Currency</mat-label>
+            <mat-select formControlName="currency">
+              <mat-option *ngFor="let selected of currencyTypes" [value]="selected">
+                {{ currencyType[selected] }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="formService.currency.invalid && formService.currency.touched">
+              Please choose currency for edition
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <div class="btn-center">
+      <button mat-raised-button [disabled]="formService.price.invalid" type="submit">Submit</button>
+      <button mat-raised-button (click)="onClose()" >Cancel</button>
+    </div>
+  </form>
+  

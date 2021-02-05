@@ -1,0 +1,52 @@
+  .position {
+    width: 100%;
+  }
+  
+  table {
+    position: relative;
+  }
+  
+  p {
+    margin-left: 3%;
+  }
+  
+  ul {
+      list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .search-btn {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    margin-top: 24px;
+  }
+  
+  .search-card {
+    width: 250px;
+  }
+  
+  .add-product {
+    position: absolute;
+    left: 95%;
+    color: black;
+    margin-bottom: 3rem;
+    cursor: pointer;
+  }
+  
+  .edit-icon {
+    margin-left: 20%;
+    color: black;
+  }
+  
+  .edit-icon :hover {
+    color: grey;
+  }
+  
+  .td-data {
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+  }
+

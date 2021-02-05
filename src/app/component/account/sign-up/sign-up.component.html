@@ -1,0 +1,69 @@
+<div class="signup-form" *ngIf="!(isSignedUp$ | async)">
+  <form [formGroup]="signUpForm" (submit)="signUp()">
+  <h2>Sign Up</h2>
+  <p>Please fill in this form to create an account!</p>
+  <hr>
+      <div class="form-group">
+    <div class="row">
+      <div class="col">
+        <input type="text" class="form-control" formControlName="name" placeholder="First Name">
+        <span class="error-block" *ngIf="!name.valid && (name.touched || formSubmited)">
+          Please provide the first name
+        </span>
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" formControlName="surname" placeholder="Last Name" >
+        <span class="error-block" *ngIf="!surname.valid && (surname.touched || formSubmited)">
+          Please provide the last name
+        </span>
+      </div>
+    </div>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" formControlName="username" placeholder="Username">
+        <span class="error-block" *ngIf="!username.valid && (username.touched || formSubmited)">
+          <span *ngIf="username.hasError('required')">
+            Please provide the username
+          </span>
+      </span>
+      </div>
+      <div class="form-group">
+        <input type="email" class="form-control" formControlName="email" placeholder="Email">
+        <span class="error-block" *ngIf="!email.valid && (email.touched || formSubmited)">
+          <span *ngIf="email.hasError('required')">
+            Please provide the email address
+          </span>
+          <span *ngIf="email.hasError('email')">
+            Please provide the email provider
+          </span>
+      </span>
+      </div>
+    <div class="form-group">
+        <input type="password" class="form-control" formControlName="password" placeholder="Password">
+        <span class="error-block" *ngIf="!password.valid && (password.touched || formSubmited)">
+          <span *ngIf="password.hasError('required')">
+            Please provide the password
+          </span>
+          <span *ngIf="password.errors.minlength">
+            Password should not be lesser than 8 characters
+          </span>
+        </span>
+    </div>
+    <div class="form-group">
+        <button type="submit" [disabled]="signUpForm.invalid" class="btn btn-primary btn-lg">Sign Up</button>
+    </div>
+  </form>
+<div class="hint-text">Already have an account? <a [routerLink]="['/']">Sign In</a></div>
+</div>
+
+<div class="initial-component" *ngIf="isSignedUp$ | async">
+  <h2>{{errorMessage$| async}}</h2>
+  <p>
+    We have sent an email with a confirmation link to your email address.
+    In order to complete the sign-up process please click the confirmation link.
+  </p>
+  <p>
+    If you do not receive a confirmation email, please check your spam folder.
+    Also please verify that you entered valid credentials.
+  </p>
+</div>

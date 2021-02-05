@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-5">
+      <img src="assets/images/default.png">
+    </div>
+    <div class="col-md-7">
+      <h2>{{ printingEdition?.title }}</h2>
+      <p>ID {{ printingEdition?.id }}</p>
+      <p>Author(s) :</p>
+
+      <ul role="list">
+        <li *ngFor="let author of printingEdition?.authors" role="listitem">
+          {{ author.author.name }}
+        </li>
+      </ul>
+
+      <mat-form-field>
+        <mat-label>Quantity</mat-label>
+        <input [(ngModel)]="quantity" matInput type="number" value="1" min="1" height="40px">
+      </mat-form-field>
+      <b class="price">{{ printingEdition?.price | number : roundTo }} {{ printingEdition?.currency | currency }}</b>
+      <br>
+
+      <div  *ngIf="isLoggedIn && !isAdmin">
+        <button mat-icon-button [disabled]="quantity <= 0" (click)="addProduct()">
+          <mat-icon>
+            add_shopping_cart
+          </mat-icon> Add to Cart
+        </button>
+      </div>
+      <div  *ngIf="!isLoggedIn">
+        <h2>To buy a product, you need to sign in.</h2>
+      </div>
+    </div>
+  </div>
+  <div class="description">
+    <p>
+      {{ printingEdition?.description }}
+    </p>
+  </div>
+</div>

@@ -1,0 +1,105 @@
+@import '../node_modules/alertifyjs/build/css/alertify.min.css';
+@import '../node_modules/alertifyjs/build/css/themes/bootstrap.min.css';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+.btn-center{
+  text-align: center;
+}
+
+button {
+  outline: 0;
+}
+
+button:focus {
+  outline: 0;
+}
+
+.search-btn {
+  margin-top: 20%;
+  text-align: center;
+  width: 80px;
+  font-size: 12px;
+}
+
+
+.ng-invalid.ng-touched {
+  border-color: red;
+}
+
+.error-block {
+  color: red;
+}
+
+.initial-component {
+  width: 50rem;
+  margin: 7px;
+  padding: 10px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.btn {
+	font-size: 16px;
+	font-weight: bold;
+	background: rgb(255, 255, 255);
+	border: none;
+  min-width: 140px;
+  margin-left: 1rem;
+}
+
+.btn:hover, .btn:focus {
+	background: rgb(155, 153, 153) !important;
+	outline: none;
+}
+
+.controles-container {
+  width: 95%;
+  padding: 5%;
+}
+
+.controles-container > * {
+  width: 95%;
+}
+
+.pagination {
+  margin-left: 30px;
+}
+
+.pagination button {
+  background-color: black;
+  color:white;
+  text-align: center;
+  font-size: 12px;
+  margin-left: 20px;
+  height: 40px;
+  width: 170px;
+}
+
+.card-position {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+}
+
+td {
+  overflow:hidden;
+  max-width: 100px;
+  text-overflow: ellipsis;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  margin: 0; 
+  font-family: Roboto, "Helvetica Neue", sans-serif; 
+}
+
+.pagination .buttons {
+  margin-left: 850px;
+  display: inline-flex;
+  margin-right: 50px;
+}
+

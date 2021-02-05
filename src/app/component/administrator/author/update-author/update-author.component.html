@@ -1,0 +1,29 @@
+<mat-toolbar>
+    <span style="text-align: center;">{{ "Edit Author" }}</span>
+</mat-toolbar>
+
+<form [formGroup]="formService.authorForm" (submit)="onSubmit()">
+    <div class="controles-container">
+        <mat-form-field>
+            <input type="hidden" formControlName="id">
+            <input matInput placeholder="Author name" formControlName="name" maxlength="30">
+            <mat-error *ngIf="formService.name.invalid && formService.name.touched">
+                Please input the author name
+            </mat-error>
+        </mat-form-field>
+
+        <ng-container matColumnDef="printingEditions">
+            <mat-label>Printing Editions</mat-label>
+            <ul>
+                <li *ngFor="let printingEdition of printingEditions">
+                  {{ printingEdition.printingEdition.title }}
+                </li>
+            </ul>
+          </ng-container>
+    </div>
+
+    <div class="btn-center">
+        <button mat-raised-button [disabled]="formService.authorForm.invalid" type="submit">Submit</button>
+        <button mat-raised-button (click)="onClose()">Cancel</button>
+    </div>
+</form>

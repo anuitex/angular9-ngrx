@@ -1,0 +1,31 @@
+<mat-toolbar>
+    <span style="text-align: center;">Edit {{ formService.user.surname }} {{ formService.user.name }}</span>
+</mat-toolbar>
+
+<form [formGroup]="formService.userForm" (submit)="onSubmit()">
+      <input type="hidden" formControlName="id">
+      <input type="hidden" formControlName="isBlocked">
+      <div class="controles-container">
+        <mat-form-field>
+          <input matInput placeholder="Name" formControlName="name" maxlength="40">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Surname" formControlName="surname" maxlength="40">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Username" formControlName="username" maxlength="40">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Enter your email</mat-label>
+          <input matInput type="email" formControlName="email" maxlength="40">
+        </mat-form-field>
+          <mat-form-field>
+            <input matInput type="password" placeholder="Password" formControlName="password" maxlength=16>
+          </mat-form-field>
+      </div>
+  <div class="btn-center">
+    <button  mat-raised-button [disabled]="formService.userForm.invalid" type="submit">Submit</button>
+    <button  mat-raised-button (click)="onClose()">Cancel</button>
+  </div>
+</form>
+  

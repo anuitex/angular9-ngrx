@@ -1,0 +1,7 @@
+<div *ngIf="isEmailConfirmed$ | async" class="container">
+    <div style="text-align: center;">
+      <h2 class="display-3"> Thank you for registration </h2>
+      <p><button [routerLink]="['/']" class="btn btn-primary">Sign In</button></p>
+    </div>
+  </div>
+

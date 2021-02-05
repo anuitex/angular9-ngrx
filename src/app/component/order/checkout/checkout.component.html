@@ -1,0 +1,41 @@
+<h3 class="checkout-header">Checkout</h3>
+  <table mat-table [dataSource]="items" class="mat-elevation-z8" >
+    <ng-container matColumnDef="product">
+      <th mat-header-cell *matHeaderCellDef> Product </th>
+      <td mat-cell *matCellDef="let element"> {{ element.printingEdition.title }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="unit-price">
+      <th mat-header-cell *matHeaderCellDef> Unit price </th>
+      <td mat-cell *matCellDef="let element"> {{ element.printingEdition.price | number : roundTo }} USD</td>
+    </ng-container>
+
+    <ng-container matColumnDef="qty">
+      <th mat-header-cell *matHeaderCellDef> Qty </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-form-field style="width: 50px;">
+          <input (change)="changeProductQuantity(element, $event)" matInput value="{{ element.count }}" min=1 type="number">
+        </mat-form-field>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="order-amount">
+      <th mat-header-cell *matHeaderCellDef> Order amount </th>
+      <td mat-cell *matCellDef="let element"> {{ element.count * element.printingEdition.price | number : roundTo }} USD</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button (click)="deleteProduct(element)"><mat-icon>delete_forever</mat-icon></button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <div class="checkout-btn">
+    <button mat-raised-button (click)="close()">Cancel</button>
+    <button mat-raised-button [disabled]="quantityError || cartIsNull || items.length === 0" (click)="buy()">Buy</button>
+  </div>
+

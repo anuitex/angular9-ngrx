@@ -1,0 +1,72 @@
+<nav class="navbar navbar-light bg-light border-bottom">
+        <a class="navbar-brand logo" [routerLink]="['/printing-editions/catalog']"><i class="fas fa-book mr-2"></i>Book Publish Company</a>
+    
+        <div class="nav navbar-nav navbar-right">
+          <div class="row">
+            <a *ngIf="!isAuthenticated" [routerLink]="['/']"><span></span><i class="fas fa-sign-in-alt"></i>Sign In</a>
+            <div  *ngIf="isAuthenticated && isAdmin">
+                  <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <mat-icon>account_circle</mat-icon>
+                  </button>              
+                <mat-menu class="mat-menu-button" #menu="matMenu">
+                  <button class="menu-button"
+                          [routerLink]="['/users']"
+                          mat-menu-item
+                  >User managment <mat-icon>supervised_user_circle</mat-icon></button>
+    
+                  <button class="menu-button"
+                          [routerLink]="['/printing-editions/list']"
+                          mat-menu-item
+                  >Product managment <mat-icon>book</mat-icon></button>
+    
+                  <button class="menu-button"
+                          [routerLink]="['/authors']"
+                          mat-menu-item
+                  >Authors page <mat-icon>perm_identity</mat-icon></button>
+    
+                  <button class="menu-button"
+                          [routerLink]="['/orders']"
+                          mat-menu-item
+                  >Order managment <mat-icon>view_list</mat-icon></button>
+    
+                  <button class="menu-button"
+                          [routerLink]="['/my/profile']"
+                  mat-menu-item
+                  >Profile <mat-icon>view_list</mat-icon></button>
+
+                  <button class="menu-button"
+                          (click)="signOut()"
+                          mat-menu-item
+                  >Sign Out <mat-icon>exit_to_app</mat-icon></button>
+    
+                </mat-menu>
+            </div>
+            <div *ngIf="!isAdmin && isAuthenticated">
+              <button mat-icon-button (click)="openShopCart()"><mat-icon>shopping_cart</mat-icon></button>
+              
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <mat-icon>account_circle </mat-icon>
+                </button>
+
+              <mat-menu class="mat-menu-button" #menu="matMenu" >
+                
+                  <button class="menu-button"  
+                          [routerLink]="['/my/orders']" 
+                          mat-menu-item
+                  >My orders <mat-icon>view_list</mat-icon></button>
+
+                  <button class="menu-button"
+                          [routerLink]="['/my/profile']"
+                          mat-menu-item
+                  >Profile <mat-icon>view_list</mat-icon></button>
+
+                  <button class="menu-button" 
+                          (click)="signOut()" 
+                          mat-menu-item
+                  >Sign Out <mat-icon>exit_to_app</mat-icon></button>
+
+              </mat-menu>
+            </div>
+          </div>
+        </div>
+    </nav>
